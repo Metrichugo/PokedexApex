@@ -4,14 +4,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.metrichugo.apextest.data.model.NamedAPIResource
-import com.metrichugo.apextest.domain.getPokemonListUseCase
+import com.metrichugo.apextest.domain.GetPokemonListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class PokedexViewModel @Inject constructor(
-    private val getPokemonListUseCase: getPokemonListUseCase,
+    private val getPokemonListUseCase: GetPokemonListUseCase,
 ) : ViewModel() {
 
     val _pokemonList = MutableLiveData<List<NamedAPIResource>>()

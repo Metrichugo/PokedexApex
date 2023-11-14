@@ -20,7 +20,7 @@ class PokemonViewModel @Inject constructor(
         getPokemonInfo(name)
     }
 
-    fun getPokemonInfo(name: String) {
+    private fun getPokemonInfo(name: String) {
         viewModelScope.launch {
             val result = getPokemonInfoUseCase.getPokemonInfo(name)
             _pokemon.postValue(result)

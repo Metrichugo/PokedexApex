@@ -9,7 +9,6 @@ import com.metrichugo.apextest.R
 import com.metrichugo.apextest.data.model.NamedAPIResource
 import com.metrichugo.apextest.databinding.PokemonItemBinding
 import com.squareup.picasso.Picasso
-import java.util.*
 
 class PokedexAdapter(
     val clickListener: ClickListener,

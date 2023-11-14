@@ -1,9 +1,13 @@
 package com.metrichugo.apextest.ui.view
 
 import android.os.Bundle
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.navArgs
 import com.metrichugo.apextest.R
 import com.metrichugo.apextest.databinding.PokemonInfoBinding
 import com.metrichugo.apextest.ui.viewmodel.PokemonViewModel
@@ -12,22 +16,25 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlin.random.Random
 
 @AndroidEntryPoint
-class PokemonInfo : AppCompatActivity() {
+class PokemonInfoFragment : Fragment() {
     private lateinit var binding: PokemonInfoBinding
     private val pokemonViewModel: PokemonViewModel by viewModels()
     private lateinit var name: String
+    private val args: PokemonInfoFragmentArgs by navArgs()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        intent.extras?.let {
-            name = it.getString("pokemon_name", "")
-        }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = PokemonInfoBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        binding = PokemonInfoBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        name = args.pokemonName
+
         pokemonViewModel.onCreate(name)
 
-        pokemonViewModel._pokemon.observe(this, Observer { pokemon ->
+        pokemonViewModel._pokemon.observe(viewLifecycleOwner, Observer { pokemon ->
             binding.name.text = getString(R.string.pokemon_name, pokemon.name)
             binding.order.text = getString(R.string.pokemon_order, pokemon.order)
             binding.pokemonHeight.text = getString(R.string.pokemon_height, pokemon.height)
@@ -43,4 +50,5 @@ class PokemonInfo : AppCompatActivity() {
 
         })
     }
+
 }

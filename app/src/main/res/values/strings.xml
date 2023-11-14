@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ApexTest</string>
+    <string name="pokemon_name">Name: %s</string>
+    <string name="pokemon_order">Order: %d</string>
+    <string name="pokemon_height">Height: %d</string>
+    <string name="pokemon_weight">Weight: %d</string>
+    <string name="pokemon_image">Pokemon Image</string>
+</resources>
